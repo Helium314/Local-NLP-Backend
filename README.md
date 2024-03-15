@@ -1,6 +1,6 @@
 Note that microG has stopped supporting UnifiedNlp backends with 0.2.28.
 
-If you still want to use this backend (or others), you need to use older microG versions. This can only be recommended of you use microG __for location only__.
+If you still want to use this backend (or others), you need to use older microG versions. This can only be recommended if you use microG __for location only__.
 
 Personally I use [0.2.10](https://github.com/microg/GmsCore/releases/tag/v0.2.10.19420), as with later versions location backends stop providing locations after some time.
 
@@ -8,26 +8,26 @@ Local NLP Backend - A Déjà Vu Fork
 ==================================
 This is a backend for [UnifiedNlp](https://github.com/microg/android_packages_apps_UnifiedNlp) that uses locally acquired WLAN/WiFi AP and mobile/cellular tower data to resolve user location. Collectively, “WLAN/WiFi and mobile/cellular” signals will be called “RF emitters” below.
 
-Conceptually, this backend consists of two parts sharing a common database. One part passively monitors the GPS. If the GPS has acquired and has a good position accuracy, then the coverage maps for RF emitters detected by the phone are created and saved.
+Conceptually, this backend consists of two parts sharing a common database. One part passively monitors the GPS. If the GPS has acquired a position and has good position accuracy, the coverage maps for RF emitters detected by the phone are created and saved.
 
-The other part is the actual location provider which uses the database to estimate location when the GPS is not available.
+The other part is the actual location provider which uses the database to estimate the location when the GPS is not available.
 This backend uses no network data. All data acquired by the phone stays on the phone.
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/helium314.localbackend/)
 [<img src="https://user-images.githubusercontent.com/663460/26973090-f8fdc986-4d14-11e7-995a-e7c5e79ed925.png" alt="Download APK from GitHub" height="80">](https://github.com/Helium314/Local-NLP-Backend/releases/latest)
 
-Note that F-Droid and GitHub releases use a different signing key. You cannot switch from one to the other without uninstalling Local NLP Backend first. However, you can always install the debug version (only on GitHub) in addition to the normal version.
+Note that F-Droid and GitHub releases use a different signing key. You cannot switch from one to the other without uninstalling Local NLP Backend first. However, you can always install the debug version (only available on GitHub) in addition to the normal version.
 
-See the [changelog](CHANGELOG.md) starting at 1.2.0-beta for a full list of changes starting from last version of *Déjà Vu*.
+See the [changelog](CHANGELOG.md) starting at 1.2.0-beta for a full list of changes starting from the last version of *Déjà Vu*.
 
 How to use
 ==========
 Local NLP Backend can be used like *Déjà Vu*: just enable the backend and let it build up the database by frequently having GPS enabled, e.g. using a map app.
-If you have a *Déjà Vu* database (you'll need root privileged to extract it), it can be imported in Local NLP Backend. Further import options are databases exported by Local NLP Backend, and cell csv files from MLS or OpenCelliD.
+If you have a *Déjà Vu* database (you'll need root privileges to extract it), it can be imported in Local NLP Backend. Further import options are databases exported by Local NLP Backend, and cell csv files from MLS or OpenCelliD.
 Note that the local database needs to be filled either using GPS or by importing data, before Local NLP Backend can provide locations!
 
-In order to speed up building the database, Local NLP Backend has an optional active mode that enabled GPS when there is no known emitter nearby (low setting) or when any unknown emitter is found (aggressive setting).
-If you have bad GPS signal at a location, you can share a location using geo uri to Local NLP Backend, e.g. using OSMAnd share -> "geo:" or StreetComplete "open location in another app". This will cause Local NLP Backend to act as if a GPS location was received it the indicated location, and allows you to manually build a database even without GPS.
+In order to speed up building the database, Local NLP Backend has an optional active mode that enables GPS when there is no known emitter nearby (low setting) or when any unknown emitter is found (aggressive setting).
+If you have a bad GPS signal at a location, you can share a location using geo uri to Local NLP Backend, e.g. using OSMAnd share -> "geo:" or StreetComplete "open location in another app". This will cause Local NLP Backend to act as if a GPS location was received at the indicated location, and allows you to manually build a database even without GPS.
 
 On [some Android versions](https://developer.android.com/guide/topics/connectivity/wifi-scan#wifi-scan-throttling), the ability to perform WiFi scans is severely limited. Local NLP Backend does not have control over this, and is limited by the specified background app limit.
 
@@ -46,11 +46,11 @@ This is a plug-in for [microG](https://microg.org/) (UnifiedNlp or GmsCore).
 
 Setup on phone
 ==============
-In the NLP Controller app (interface for microG UnifiedNlp) select the "Local NLP Backend". If using GmsCore, you can find in in microG Settings -> Location modules. Tap on backend name for configuration UI.
+In the NLP Controller app (interface for microG UnifiedNlp) select the "Local NLP Backend". If using GmsCore, you can find it in microG Settings -> Location modules. Tap on backend name for the configuration UI.
 
 When enabled, microG will request you grant location permissions to this backend. This is required so that the backend can monitor mobile/cell tower data and so that it can monitor the positions reported by the GPS.
 
-Note: The microG configuration check requires a location from a location backend to indicate that it is setup properly. However this backend will not return a location until it has mapped at least one mobile cell tower or two WLAN/WiFi access points, or data was imported. So it may be necessary to run an app that uses the GPS for a while before this backend will report information to microG. You may wish to also install a different backend to verify microG setup quickly.
+Note: The microG configuration check requires a location from a location backend to indicate that it is setup properly. However, this backend will not return a location until it has mapped at least one mobile cell tower or two WLAN/WiFi access points, or data was imported. So it may be necessary to run an app that uses the GPS for a while before this backend will report information to microG. You may wish to also install a different backend to verify microG setup quickly.
 
 Collecting RF Emitter Data
 ======================
@@ -65,7 +65,7 @@ For WLAN/WiFi APs the SSID is also saved for debug purposes. Analysis of the SSI
 
 Clearing the database
 ---------------------
-This software does not have a clear or reset database function built it but you can use settings->Storage>Internal shared storage->Apps->Local NLP Backend->Clear Data to remove the current database.
+This software does not have a clear or reset database function built in but you can use settings->Storage->Internal shared storage->Apps->Local NLP Backend->Clear Data to remove the current database.
 
 Permissions Required
 ====================
@@ -78,7 +78,7 @@ CHANGE_WIFI_STATE|Allows backend to scan for nearby WiFis.
 ACCESS_WIFI_STATE|Allows backend to access WiFi scan results.
 FOREGROUND_SERVICE|Needed so GPS can be used in active mode.
 
-Some permissions may not be necessary, this heavily depends on [Android version](https://developer.android.com/guide/topics/connectivity/wifi-scan).
+Some permissions may not be necessary, this heavily depends on the [Android version](https://developer.android.com/guide/topics/connectivity/wifi-scan).
 
 Changes
 =======
