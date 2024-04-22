@@ -14,13 +14,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - Not applicable
 
-## [1.2.12] - 2024-xx-xx
+## [1.2.12] - 2024-04-22
 ### Added
 - Not applicable
 
 ### Changed
-- Upgraded dependencies
 - Extend blacklist
+- Avoid crashes due to invalid emitter type
+- Upgrade dependencies
 
 ### Removed
 - Not applicable

@@ -417,10 +417,10 @@ class Database(context: Context?, name: String = DB_NAME) : // allow overriding 
     // get multiple emitters instead of querying one by one
     fun getEmitters(rfIds: Collection<RfIdentification>): List<RfEmitter> {
         val idString = rfIds.joinToString(",") { "'${it.uniqueId}'" }
-        return query(allColumns, "$COL_RFID IN ($idString)") { it.toRfEmitter() }.toList()
+        return query(allColumns, "$COL_RFID IN ($idString)") { it.toRfEmitter() }.filterNotNull().toList()
     }
 
-    fun getAll() = query(allColumns) { it.toRfEmitter() }
+    fun getAll() = query(allColumns) { it.toRfEmitter() }.filterNotNull()
 
     fun getSize() = DatabaseUtils.queryNumEntries(database, TABLE_SAMPLES)
 
@@ -483,10 +483,14 @@ private inline fun <T> Cursor.toSequence(crossinline transform: (CursorPosition)
     }
 }
 
-private fun CursorPosition.toRfEmitter(rfId: RfIdentification? = null): RfEmitter {
+private fun CursorPosition.toRfEmitter(rfId: RfIdentification? = null): RfEmitter? {
     val info = EmitterInfo(getDouble(COL_LAT), getDouble(COL_LON), getDouble(COL_RAD_NS), getDouble(COL_RAD_EW), getString(COL_NOTE))
     return if (rfId == null) {
-        val type = EmitterType.valueOf(getString(COL_TYPE))
+        val type = try {
+            EmitterType.valueOf(getString(COL_TYPE))
+        } catch (_: Exception) {
+            return null
+        }
         val dbId = getString(COL_RFID)
         val id = if (type in wifis) dbId.substringAfter('/')
                 else dbId

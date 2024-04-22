@@ -1,0 +1,3 @@
+- Extend blacklist
+- Avoid crashes due to invalid emitter type
+- Upgrade dependencies

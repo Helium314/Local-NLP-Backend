@@ -398,14 +398,16 @@ class SettingsActivity : PreferenceActivity() {
                     if (splitLine[5].isEmpty()) return null // why is this the case so often? do some phones not report it (properly)?
                     "LTE/${splitLine[1]}/${splitLine[2]}/${splitLine[4]}/${splitLine[5]}/${splitLine[3]}" //LTE,202,1,3126,35714457,20 -> LTE/202/1/35714457/20/3126
                 }
-                else -> ""
+                else -> return null
             }
             splitLine = listOf(rfid, rfid.substringBefore('/'), splitLine[7], splitLine[6], splitLine[8], splitLine[8], "")
 
         } else if (readFormat == 4 && splitLine.size != 7) {
+            if (splitLine[0].uppercase() !in emitterTypes) return null
             // we have one or more comma in ssid, rare enough to not optimize anything
             splitLine = splitLine.subList(0, 6) + splitLine.subList(6, splitLine.size).joinToString(",") // careful, subList endIndex is exclusive!
         }
+        if (splitLine[0].uppercase() !in emitterTypes) return null
         return splitLine
     }
 
@@ -588,6 +590,7 @@ class SettingsActivity : PreferenceActivity() {
 
 private const val IMPORT_CODE = 6957238
 private const val EXPORT_CODE = 75902745
+private val emitterTypes = EmitterType.entries.map { it.name.uppercase() }.toHashSet()
 
 const val PREF_KALMAN = "pref_kalman"
 const val PREF_MOBILE = "pref_use_cell"
