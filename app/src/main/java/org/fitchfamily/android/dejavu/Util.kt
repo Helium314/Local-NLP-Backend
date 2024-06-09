@@ -205,8 +205,14 @@ fun Collection<RfLocation>.weightedAverage(): Location {
         // The actual accuracy we want to use for this location is an adjusted accuracyEstimate.
         // If asu is good, we're likely close to the emitter, so we can decrease accuracy value.
         // asuAdjustedAccuracy varies between minRange and accuracyEstimate
-        val factor = 1.0 - ((asu - MINIMUM_ASU) * 1.0 / MAXIMUM_ASU)
-        val asuAdjustedAccuracy = minRange + factor * factor * (it.accuracyEstimate - minRange)
+        // But at the same time, we may not have the full emitter in the database.
+        // In this case, an accuracy improvement may actually result in an over-confident estimate,
+        // which is not desirable. Thus we reduce the asuFactor if the emitter is much smaller than
+        // it maximum range for its type.
+        val rangeFactor = min(5 * it.radius / it.id.rfType.getRfCharacteristics().maximumRange, 1.0)
+        val asuFactor = 1.0 - ((asu - MINIMUM_ASU) * 1.0 / MAXIMUM_ASU) * rangeFactor
+
+        val asuAdjustedAccuracy = minRange + asuFactor * asuFactor * (it.accuracyEstimate - minRange)
 
         // <Comment on the factor 0.5 from original WeightedAverage.java>
         // Our input has an accuracy based on the detection of the edge of the coverage area.
