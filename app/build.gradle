@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     defaultConfig {
         applicationId "helium314.localbackend"
         minSdkVersion 18
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 40
         versionName "1.2.12"
     }
@@ -44,8 +44,8 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1' // can't upgrade to 1.7.0 because this requires minSdkVersion 21
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     implementation 'org.microg.nlp:api:2.0-alpha10'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1'
 }
