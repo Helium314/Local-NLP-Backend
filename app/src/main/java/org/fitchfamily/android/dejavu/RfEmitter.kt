@@ -401,7 +401,7 @@ private val blacklistEquals = hashSetOf(
     "svciob", "oebb", "oebb-postbus", "dpmbfree", "telekom_ice", "db ic bus",
     "gkbgast", "mavstart-wifi", "wifionice", "wifi@db", "crosscountrywifi",
     "gwr wifi", "thalysnet", "_sncf_wifi_inoui", "_sncf_wifi_intercities",
-    "normandietrainconnecte", "keolis nederland", "ouifi", "raillan",
+    "normandietrainconnecte", "keolis nederland", "ouifi", "raillan", "vorwlan",
     "zssk wifi", "wifi zssk", "mavstart-wifi", "raaberbahn", "hotspot ic" // transport
 )
 // and arrays if we just want to iterate
