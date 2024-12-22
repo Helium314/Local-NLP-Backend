@@ -407,7 +407,7 @@ class SettingsActivity : PreferenceActivity() {
             // we have one or more comma in ssid, rare enough to not optimize anything
             splitLine = splitLine.subList(0, 6) + splitLine.subList(6, splitLine.size).joinToString(",") // careful, subList endIndex is exclusive!
         }
-        if (splitLine[0].uppercase() !in emitterTypes) return null
+        if (splitLine[1].uppercase() !in emitterTypes) return null
         return splitLine
     }
 
