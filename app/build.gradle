@@ -47,5 +47,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1' // can't upgrade to 1.7.0 because this requires minSdkVersion 21
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
     implementation 'org.microg.nlp:api:2.0-alpha10'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0'
 }
