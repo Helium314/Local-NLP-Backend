@@ -36,6 +36,10 @@
             android:name="org.fitchfamily.android.dejavu.SettingsActivity"
             android:launchMode="singleTask"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -48,7 +52,6 @@
                 <data android:scheme="geo" />
             </intent-filter>
         </activity>
-
         <service
             android:name="org.fitchfamily.android.dejavu.GpsMonitor"
             android:permission="android.permission.ACCESS_FINE_LOCATION">

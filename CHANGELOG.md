@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - Not applicable
 
+## [1.2.14] - 2025-01-22
+### Changed
+- Added settings to launcher to allow data export without microG support
+- Upgrade dependencies
+
 ## [1.2.13] - 2024-12-22
 ### Changed
 - Fix wrong check breaking imports
