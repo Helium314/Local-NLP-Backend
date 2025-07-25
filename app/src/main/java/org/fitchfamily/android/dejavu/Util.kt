@@ -70,12 +70,14 @@ private fun approxCos(radians: Double): Double {
  * @param loc The location to be checked
  * @return boolean True if away from lat,lon of 0,0
  */
-fun notNullIsland(loc: Location): Boolean = notNullIsland(loc.latitude, loc.longitude)
-// simplified check that should avoid distance calculation in almost every case where this return true
-fun notNullIsland(lat: Double, lon: Double): Boolean {
-    return abs(lat) > NULL_ISLAND_DISTANCE_DEG
-            || abs(lon) > NULL_ISLAND_DISTANCE_DEG
-            || approximateDistance(lat, lon, 0.0, 0.0) > NULL_ISLAND_DISTANCE
+fun notNullIsland(loc: Location): Boolean = !isNullIsland(loc.latitude, loc.longitude)
+
+fun isNullIsland(lat: Double, lon: Double): Boolean {
+    if (lat == 0.0 && lon == 0.0) return true
+    return abs(lat) < NULL_ISLAND_DISTANCE_DEG
+            && abs(lon) < NULL_ISLAND_DISTANCE_DEG
+            // only do relatively slow distance calculation if really necessary
+            && approximateDistance(lat, lon, 0.0, 0.0) < NULL_ISLAND_DISTANCE
 }
 
 // wifiManager.is6GHzBandSupported might be called to check whether it can be WLAN6

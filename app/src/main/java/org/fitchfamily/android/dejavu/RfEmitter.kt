@@ -160,6 +160,8 @@ class RfEmitter(val type: EmitterType, val id: String) {
      * @param db The database we should write our data to.
      */
     fun sync(db: Database) {
+        if (location == null)
+            status = EmitterStatus.STATUS_UNKNOWN
         var newStatus = status
         when (status) {
             EmitterStatus.STATUS_UNKNOWN -> { }
@@ -269,7 +271,7 @@ class RfEmitter(val type: EmitterType, val id: String) {
             val cov = coverage ?: return null
 
             // If we are unbelievably close to null island, don't report location
-            if (!notNullIsland(cov.center_lat, cov.center_lon)) return null
+            if (isNullIsland(cov.center_lat, cov.center_lon)) return null
 
             // Use time and asu based on most recent observation
             return RfLocation(observation.lastUpdateTimeMs, observation.elapsedRealtimeNanos,
