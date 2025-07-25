@@ -14,6 +14,7 @@ The other part is the actual location provider which uses the database to estima
 This backend uses no network data. All data acquired by the phone stays on the phone.
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/helium314.localbackend/)
+[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height="80">](https://apt.izzysoft.de/packages/helium314.localbackend)
 [<img src="https://user-images.githubusercontent.com/663460/26973090-f8fdc986-4d14-11e7-995a-e7c5e79ed925.png" alt="Download APK from GitHub" height="80">](https://github.com/Helium314/Local-NLP-Backend/releases/latest)
 
 Note that F-Droid and GitHub releases use a different signing key. You cannot switch from one to the other without uninstalling Local NLP Backend first. However, you can always install the debug version (only available on GitHub) in addition to the normal version.

@@ -1,12 +1,17 @@
 The backend passively monitors the GPS and scans for nearby WiFis and mobile cells/towers. From this a database of emitter locations is created.
-When UnifiedNlp / microG request a location from Local NLP Backend, a scan for nearby emitter is initiated and a location determined based on the scan results.
-Local NLP Backend is a fork of the Déjà Vu NLP Backend with some improvements and a crude UI for configuration and importing / exporting data, including cell lists from MLS or OpenCelliD.
+When UnifiedNlp / microG request a location from <i>Local NLP Backend</i>, a scan for nearby emitter is initiated and a location determined based on the scan results.
+
+<i>Local NLP Backend</i> is a fork of the Déjà Vu NLP Backend with some improvements and a crude UI for configuration and importing / exporting data, including cell lists from MLS or OpenCelliD.
 
 This backend uses no network data. All data acquired by the phone stays on the phone, though it may be exported manually.
 
-How to use:
-Local NLP Backend can be used like Déjà Vu: just enable the backend and let it build up the database by frequently having GPS enabled, e.g. using a map app.
+<b>How to use:</b>
+
+<i>Local NLP Backend</i> can be used like Déjà Vu: just enable the backend and let it build up the database by frequently having GPS enabled, e.g. using a map app.
 If you have a Déjà Vu database (you'll need root privileged to extract it), it can be imported in Local NLP Backend. Further import options are databases exported by Local NLP Backend, and cell csv files from MLS or OpenCelliD.
 Note that the local database needs to be filled, either using GPS or by importing data, before Local NLP Backend can provide locations!
 
 In order to speed up building the database, LocalNLP has an optional active mode that enabled GPS when there is no known emitter nearby (low setting) or when any unknown emitter is found (aggressive setting).
+
+Note that microG has stopped supporting UnifiedNlp backends with 0.2.28. If you still want to use this backend (or others), you need to use older microG versions. This can only be recommended if you use microG <b>for location only</b>.
+Personally I use <a href='https://github.com/microg/GmsCore/releases/tag/v0.2.10.19420'>0.2.10</a>, as with later versions location backends stop providing locations after some time.
