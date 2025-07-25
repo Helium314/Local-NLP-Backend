@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - Not applicable
 
+## [1.2.15] - 2025-07-25
+### Changed
+- More check against 0 coordinates
+- Update description texts
+- Upgrade dependencies
+
 ## [1.2.14] - 2025-01-22
 ### Changed
 - Added settings to launcher to allow data export without microG support
