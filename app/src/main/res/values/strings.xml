@@ -55,7 +55,7 @@ Current setting: %s
     <string name="import_number_progress">%1$d imported, %2$d skipped</string>
     <string name="import_done">Import finished</string>
     <string name="show_scan_started">Scanning…</string>
-    <string name="show_scan_start_failed">Scanning failed, maybe the backend service is disabled</string>
+    <string name="show_scan_start_failed">Scanning failed, maybe the backend service is disabled. Try disabling and enabling again.</string>
     <string name="show_scan_results">Nearby emitters</string>
     <string name="show_scan_details_emitter">Details for emitter %s</string>
     <string name="show_scan_details_emitter_type">Emitter type: %s</string>
